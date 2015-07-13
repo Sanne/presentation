@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Hibernate Search</title>
+		<title>Apache Lucene for JavaEE Developers</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="description" content="A presentation about Apache Lucene, Hibernate Search, Infinispan Que	ry, the Infinispan Directory and OSS related ecosystem">
 		<meta name="author" content="Sanne Grinovero">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,341 +41,834 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Hibernate Search</h1>
-					<h3>The HTML Presentation Framework</h3>
+					<h1>Apache Lucene for JavaEE Developers</h1>
+					<h3>Virtual:JBUG</h3>
 					<p>
-						<small>Created by <a href="http://github.com/Sanne">Sanne Grinovero</a> / <a href="http://twitter.com/SanneGrinovero">@SanneGrinovero</a></small>
+						<small>by <a href="http://twitter.com/sannegrinovero">@SanneGrinovero</a></small>
 					</p>
-				</section>
-
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-
-<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/custom.css'); return false;">CUSTOM</a>
-					</p>
-				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
+<p>Press the <em>S</em> key to try it out.</p>
+<p>Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).</p>
+<p>Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.</p>
 					</aside>
 				</section>
 
 				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+					<h2>A quick introduction</h2>
+<section>
+						<h4>Hibernate Team</h4>
+						<p><em>Hibernate Search</em> project lead</p>
+						<p>Hibernate OGM team, occasionally Hibernate ORM</p>
+</section>
+<section>
+						<h4>Infinispan Team</h4>
+						<p>The Lucene guy: <em>Infinispan Query</em>, <em>Infinispan Lucene Directory</em></p>
+</section>
+<section>
+						<h4>Other projects I help with...</h4>
+						<p>WildFly, JGroups, <em>Apache Lucene</em>, ...</p>
+</section>
+<section>
+						<h4>Supported by </h4>
+						<p>Red Hat and a lot of passion for OSS</p>
+</section>
+				</section>
+
+<section>
+	<h2>Agenda</h2>
+	<ul>
+		<li>What is <a href="https://lucene.apache.org/core/">Apache Lucene</a> and how can it help you</li>
+		<li>Integrations with a JPA application via <a href="http://hibernate.org/search/">Hibernate Search</a></li>
+		<li>How does this all relate with <a href="http://infinispan.org/">Infinispan</a> and <a href="http://wildfly.org">WildFly</a></li>
+		<li>Lucene index management</li>
+		<li>Plans and wishlist for the future</li>
+	</ul>
+</section>
+
+				<section>
+					<h2>The Search problem</h2>
+					<section>
+						<blockquote>Hello, I'm looking for a book in your online shop having primary key #2342</blockquote>
+					</section>
+					<section>
+						<img data-src="/images/AmazonSearchBar.png">
+					</section>
 				</section>
 
 				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
+					<h2>SQL can handle text</h2>
+					<section>
+						<blockquote>The LIKE operator?</blockquote>
+					</section>
 				</section>
 
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
+					<h2>Let's refresh some history on the WikiPedia</h2>
+					<section>
+<pre><code data-trim contenteditable class="fragment">Select * from WikipediaPages p where p.content LIKE ?;</code></pre>
+<pre><code data-trim contenteditable class="fragment">Select * from WikipediaPages p where p.title LIKE ?;</code></pre>
+<pre><code data-trim contenteditable class="fragment">Select * from WikipediaPages p where
+	(lowercase(p.content) LIKE %:1% OR
+	 lowercase(p.content) LIKE %:2% OR
+	 lowercase(p.content) LIKE %:3% OR
+	...);</code></pre>
+
+					</section>
+					<section>
+						<img data-src="/images/AmazonSearchBar.png">
+					</section>
+					<section>
+			<img data-src="/images/GoogleUk.png">
+					</section>
+					<section>
+			<br/>
+			<img data-src="/images/TwitterSearch.png">
+					</section>
 				</section>
 
 				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
+					<h2>Am I cheating?</h2>
+<section>
+					<p class="fragment">I'm quoting some very successfull web companies.</p>
+					<p class="fragment">How many can you list which do not provide an effective search engine?</p>
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="?print-pdf">Export these slides to PDF (requires Chrome)</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
+<p class="fragment">Why is that?</p>
+
+</section>
+</section>
+
+<section>
+	<h2>Requirements for a search engine</h2>
+	<section>
+		<p class="fragment">Need to guess what you want w/o you typing all of the content</p>
+		<p class="fragment">We all hate forms</p>
+		<p class="fragment">We want the results in the blink of an eye</p>
+		<p class="fragment">We want the right result on top: <em>Relevance</em></p>
+	</section>
+	<section>
+		<img data-src="/images/GooglingHibernate.png">
+	</section>
+</section>
+
+<section>
+	<h2>Some more things to consider:</h2>
+	<section>
+		<p>Approximate word matches</p>
+		<p>Stemming / Language specific analysis</p>
+		<p>Typos</p>
+		<p>Synonyms, Abbreviations, Technical Language specializations</p>
+	</section>
+</section>
+
+<section>
+	<h2>Basics: Keyword extraction</h2>
+	<blockquote>On how to improve running by Scott</blockquote>
+	<ol><li>Tokenization & Analysis:
+	<ul>
+		<li>how</li>
+		<li>improv</li>
+		<li>run</li>
+		<li>scott</li>
+	</ul>
+</li><li>Scoring</li>
+</section>
+
+<section>
+	<h2>Apache Lucene</h2>
+	<ul>
+		<li>Open source Apache™ top level project</li>
+		<li>Primarily Java, ported to many other languages and platforms</li>
+		<li>Extremely popular, it's everywhere!</li>
+		<li>High pace of improvement, excellent team</li>
+		<li>Most impressive testing</li>
+	</ul>
+</section>
+
+<section>
+	<h2>As a JavaEE developer:</h2>
+	<section>
+		<p class="fragment">You are familiar with JPA</p>
+		<p class="fragment">But Lucene is much better than a relational database to address this problem</p>
+		<p class="fragment">Easy integration with the platform is a requirement</p>
+	</section>
+	<section>
+		<img data-src="/images/BaseArchitecture.png">
+	</section>
+</section>
+
+<section>
+	<h2>Let's introduce Apache Lucene via Hibernate Search</h2>
+	<section>
+<br/><br/>
+<img size="30%" data-src="/images/HibernateLargeLogo.png"></p>
+		<p>Deeply but transparently integrated with Hibernate's <em>EntityManager</em>
+</section>
+<section>
+<ul>
+	<li>Internally uses advanced Apache Lucene features, but protects your deadlines from the lower level details</li>
+	<li>Gets great performance out of it</li>
+	<li>Simple annotations, yet many flexible override options</li>
+</ul>
+</section>
+<section>
+	<p>Does <em>not</em> prevent you to perform any form of advanced / native Lucene query</p>
+</section>
+<section>
+<ul>
+	<li class="fragment">Transparent index state synchronization</li>
+	<li class="fragment">Transaction integrations</li>
+	<li class="fragment">Options to rebuild the index efficiently</li>
+	<li class="fragment">Failover and clustering integration points</li>
+	<li class="fragment">Flexible Error handling</li>
+</ul>
+</section>
+</section>
+
+<section>
+	<h2>Hibernate Search Quickstart</h2>
+<pre><code>
+<dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-search-orm</artifactId>
+   <version>5.4.0.CR1</version>
+</dependency>
+<dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-core</artifactId>
+   <version>5.0.0.CR2</version>
+</dependency>
+<dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-entitymanager</artifactId>
+   <version>5.0.0.CR2</version>
+</dependency>
+</pre></code>
+</section>
+
+<section>
+	<h2>How to index a trivial domain model</h2>
+	<section>
+<pre><code>
+@Entity
+public class Actor {
+	
+	@Id
+	Integer id;
+	
+	String name;
+
+}
+</code>
+</pre>
+	</section>
+	<section>
+<pre><code>
+@Indexed @Entity
+public class Actor {
+	
+	@Id
+	Integer id;
+	
+	String name;
+
+}
+</code>
+</pre>
+	</section>
+	<section>
+<pre><code>
+@Indexed @Entity
+public class Actor {
+	
+	@Id
+	Integer id;
+	
+	@Field
+	String name;
+
+}
+</code>
+</pre>
+	</section>
+</section>
+
+<section>
+	<h2>Let's introduce relations</h2>
+	<section>
+<pre><code>
+@Entity
+public class DVD {
+
+	@Id
+	Integer id;
+
+	String title;
+
+	@ManyToMany
+	Set&lt;Actor&gt; actors = new HashSet&lt;&gt;();
+
+}</code>
+</pre>
+	</section>
+	<section>
+<pre><code>
+@Indexed @Entity
+public class DVD {
+
+	@Id
+	Integer id;
+
+	@Field
+	String title;
+
+	@ManyToMany @IndexedEmbedded
+	Set&lt;Actor&gt; actors = new HashSet&lt;&gt;();
+
+}</code>
+</pre>
+	</section>
+</section>
+
+<section>
+	<h4>Index fields for Actor</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Harrison Ford</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Kirsten Dunst</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>
+	<h4>Index fields for DVD</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>title</th>
+				<th>actors.name *</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Melancholia</td>
+				<td>{Kirsten Dunst, Charlotte Gainsbourg, Kiefer Sutherland}</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>The Force Awakens</td>
+				<td>{Harrison Ford, Mark Hamill, Carrie Fisher}</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Run a Lucene Query but get JPA managed results</h2>
+<pre><code>
+String[] productFields = { "title", "actors.name" };
+
+org.apache.lucene.search.Query luceneQuery = // ...
+
+FullTextEntityManager ftEm =
+   Search.getFullTextEntityManager( entityManager );
+
+FullTextQuery query = // extends javax.persistence.Query
+   ftEm.createFullTextQuery( luceneQuery, DVD.class );
+
+List dvds = // Managed entities!
+   query.setMaxResults(100).getResultList();
+
+int totalNbrOfResults = query.getResultSize();
+</pre></code>
+</section>
+
+<section>
+	<h2>Hibernate Search: basics demo</h2>
+	<!-- TODO update basic demo to match this domain model -->
+</section>
+
+<section>
+	<h2>Lucene & text analysis</h2>
+<pre><code>
+@Indexed(index = "tweets")
+@Analyzer(definition = "english")
+@AnalyzerDef(name = "english",
+  tokenizer = @TokenizerDef(
+    factory = StandardTokenizerFactory.class),
+    filters = {
+    @TokenFilterDef(factory = ASCIIFoldingFilterFactory.class),
+    @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+    @TokenFilterDef(factory = StopFilterFactory.class, params = {
+       @Parameter(name = "words", value = "stoplist.properties"),
+       @Parameter(name = "ignoreCase", value = "false")
+       })
+})
+@Entity
+public class Tweet {
+</pre></code>
+</section>
+
+<section>
+	<h2>Filters</h2>
+<section>
+<pre><code>
+List results = fullTextEntityManager
+   .createFullTextQuery( query, Product.class )
+   .enableFullTextFilter( "minorsFilter" )
+   .list();
+</pre></code>
+</section>
+<section>
+<pre><code>
+List results = fullTextEntityManager
+   .createFullTextQuery( query, Product.class )
+   .enableFullTextFilter( "minorsFilter" )
+   .enableFullTextFilter( "specialDayOffers" )
+      .setParameter( "day", “20150714” )
+   .enableFullTextFilter( "inStockAt" )
+      .setParameter( "location", "Newcastle" )
+   .list();
+</pre></code>
+</section>
+	<section>
+<br/>
+<img data-src="/images/Filters.png"></p>
+</section>
+</section>
+
+<section>
+	<h2>Faceting</h2>
+	<img data-src="/images/AmazonFaceting.png"></p>
+</section>
+
+<section>
+	<h2><em>"More Like This"</em></h2>
+<p><pre><code>
+Coffee decaffInstance = ... // you already have one
+QueryBuilder qb = getCoffeeQueryBuilder();
+Query mltQuery = qb
+	.moreLikeThis()
+	.comparingAllFields()
+	.toEntityWithId( decaffInstance.getId() )
+	.createQuery();
+List results = fullTextEntityManager
+	.createFullTextQuery( mltQuery, Coffee.class )
+	.list();
+</pre></code></p>
+</section>
+
+<section>
+	<h2>Spatial filtering</h2>
+	<img data-src="/images/SpatialFilteringConcept.png"></p>
+</section>
+
+<section>
+	<h2>How to run this on WildFly?</h2>
+	<!--DEMO-->
+</section>
+
+
+<section class="hsearcharchitecture">
+	<h2>Architecture & Index Management</h2>
+	<section>
+		<p>ah, the catch!</p>
+	</section>
+	<section>
+		<p>Indexes need to be stored, updated and read from.</p>
+		<ul>
+			<li>You can have many indexes, managed independently</li>
+			<li>An index can be written by an exclusive writer only</li>
+			<li>Backends can be configured differently per index</li>
+			<li>Index storage - the <em>Directory</em> - can also be configured per index</li>
+		</ul>
+	</section>
+	<section>
+		<img data-src="/images/JMSBackendArchitecture.png">
+	</section>
+	<section>
+		<img data-src="/images/JMSInfinispanArchitecture.png">
+	</section>
+</section>
+
+<section data-transition="slide" data-background-transition="zoom">
+	<h2>The Infinispan / Lucene integrations</h2>
+	<img data-src="/images/infinispan8_logo.png">
+</section>
+
+<section>
+    <h2>What is Infinispan?</h2>
+    <ul>
+        <li class="fragment">In Memory Key/Value Store</li>
+        <li class="fragment">ASL v2 License</li>
+        <li class="fragment">Scalable</li>
+        <li class="fragment">JTA Transactions</li>
+        <li class="fragment">Persistence (File/JDBC/LevelDB/...)</li>
+        <li class="fragment">Local/Clustered</li>
+        <li class="fragment">Embedded/Server</li>
+        <li class="fragment">...</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Infinispan / JavaEE?</h2>
+    <ul>
+        <li class="fragment">JavaEE: JCache implementation</li>
+        <li class="fragment">A core component of WildFly</li>
+        <li class="fragment">"Embedded" mode does not depend on WildFly</li>
+        <li class="fragment">Hibernate 2n level cache</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Infinispan / Apache Lucene?</h2>
+    <ul>
+        <li class="fragment">Lucene integrations for Querying the datagrid!</li>
+        <li class="fragment">Lucene integrations to store the index!</li>
+        <li class="fragment">Hibernate Search integrations!</li>
+    </ul>
+</section>
+
+
+<section>
+	<h2>Hibernate Search & Infinispan Query</h2>
+	<section>
+	<ul>
+		<li>Same underlying technology</li>
+		<li>Same API to learn</li>
+		<li>Same indexing configuration options</li>
+	</ul>
+	</section>
+	<section>
+		<br/><br/>
+		<img data-src="/images/HibernateSearchInfinispanQueryRelation.png">
+	</section>
+	<section>
+		<p>Same annotations, not an entity:</p>
+<pre><code class="java">
+@Indexed
+@AnalyzerDef(name = "lowercaseKeyword",
+        tokenizer = @TokenizerDef(factory = KeywordTokenizerFactory.class),
+        filters = {@TokenFilterDef(factory = LowerCaseFilterFactory.class)}
+)
+@SerializeWith(CountryExternalizer.class)
+public class Country {
+
+    @Field(store = Store.YES)
+    @Analyzer(definition = "lowercaseKeyword")
+    private String name;
+</code></pre>
+	</section>
+	<section>
+<p>Store the Java POJO classes in the cache directly:</p>
+<pre><code class="java">
+Country uk = ...
+cache.put("UK", uk );
+</code>
+</pre>
+	</section>
+
+<section>
+            <h2>Using Lucene Query Parser</h2>
+            <pre><code class="java" style="max-width: 100%">
+QueryParser qp = new QueryParser("default", new StandardAnalyzer());
+                
+Query luceneQ = qp
+ .parse("+station.name:airport +year:2014 +month:12 +(avgTemp < 0)");
+
+CacheQuery cq = Search.getSearchManager(cache)
+                           .getQuery(luceneQ, DaySummary.class);
+                
+ List&lt;Object&gt; results = query.list();
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Count entities</h2>
+            <pre><code class="java" style="max-width: 100%">
+import org.apache.lucene.search.MatchAllDocsQuery;
+
+MatchAllDocsQuery allDocsQuery = new MatchAllDocsQuery();
+                
+CacheQuery query = Search.getSearchManager(cache) 
+                             .getQuery(allDocsQuery, DaySummary.class);
+                
+int count = query.getResultSize();
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Using Lucene IndexReader Directly</h2>
+            <pre><code class="java" style="max-width: 100%">
+SearchIntegrator searchFactory = Search.getSearchManager(cache)
+                .getSearchFactory();
+                
+IndexReader indexReader = searchFactory
+                .getIndexReaderAccessor().open(DaySummary.class);
+                
+IndexSearcher searcher = new IndexSearcher(indexReader);
+            </code></pre>
+        </section>
+</section>
+
+
+        <section>
+            <h2>Getting Started with Infinispan</h2>
+        <pre><code class="xml">
+&lt;dependency&gt;
+   &lt;groupId&gt;org.infinispan&lt;/groupId&gt;
+   &lt;artifactId&gt;infinispan-embedded&lt;/artifactId&gt;
+   &lt;version&gt;7.2.3.Final&lt;/version&gt;
+&lt;/dependency&gt;
+        </code>
+        <code class="java">
+EmbeddedCacheManager cacheManager = new DefaultCacheManager();
+Cache&lt;String,String&gt; cache = cacheManager.getCache();
+
+cache.put("key", "data goes here");
+        </code></pre>
+        </section>
+
+        <section>
+            <h2>Add persistence (xml)</h2>
+            <pre><code class="xml">
+&lt;infinispan&gt;
+     &lt;cache-container&gt; 
+         &lt;local-cache name=&quot;testCache&quot;&gt;
+            &lt;persistence&gt;
+               &lt;leveldb-store path=&quot;/tmp/folder&quot;/&gt;
+            &lt;/persistence&gt;
+         &lt;/local-cache&gt;
+     &lt;/cache-container&gt;
+&lt;/infinispan&gt;
+            </code>
+            <code class="java">
+DefaultCacheManager cm = new DefaultCacheManager("infinispan.xml");
+Cache&lt;Integer, String&gt; cache = cacheManager.getCache("testCache");
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Add persistence (programmatic)</h2>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+    .persistence()
+    .addStore(LevelDBStoreConfigurationBuilder.class)
+    .build();
+
+DefaultCacheManager cm = new DefaultCacheManager(configuration);
+Cache&lt;Integer, String&gt; cache = cm.getCache();
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Clustering - Replicated</h2>
+            <pre><code class="java">
+GlobalConfiguration globalCfg = new GlobalConfigurationBuilder()
+     .transport().defaultTransport()
+     .build();
+     
+Configuration cfg = new ConfigurationBuilder()
+     .clustering().cacheMode(CacheMode.REPL_SYNC)
+     .build();
+                
+EmbeddedCacheManager cm = new DefaultCacheManager(globalCfg, cfg);
+Cache&lt;Integer, String&gt; cache = cm.getCache();
+            </code></pre>
+            <img src="images/repl.png"/>
+        </section>
+
+        <section>
+            <h2>Clustering - Distributed</h2>
+            <pre><code class="java">
+GlobalConfiguration globalCfg = new GlobalConfigurationBuilder()
+     .transport().defaultTransport()
+     .build();
+     
+Configuration configuration = new ConfigurationBuilder()
+     .clustering().cacheMode(CacheMode.DIST_SYNC)
+     .hash().numOwners(2).numSegments(100)
+     .build();
+
+EmbeddedCacheManager cm = new DefaultCacheManager(globalConfiguration, configuration);
+Cache&lt;Integer, String&gt; cache = cm.getCache();
+            </code></pre>
+            <img src="images/dist.png"/>
+        </section>
+
+        <section>
+            <h2>Querying</h2>
+            <ul>
+                <li>Apache Lucene Index</li>
+                <li>Native Map Reduce</li>
+                <li>Index-less</li>
+		<li>Hadoop and Spark (coming)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Indexing - Configuration</h2>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+     .indexing().index(Index.ALL)
+     .build();
+
+EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
+            </code></pre>
+        </section>
+
+        <section data-transition="none">
+            <h2>Query - SYNC/ASYNC</h2>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+     .indexing().index(Index.LOCAL)
+         .addProperty("default.worker.execution", "async")
+     .build();
+
+EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
+            </code></pre>
+        </section>
+
+        <section data-transition="none">
+            <h2>Query - RAM Storage</h2>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+     .indexing().index(Index.LOCAL)
+         .addProperty("default.worker.execution", "async")
+         .addProperty("default.directory_provider", "ram")
+     .build();
+
+EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
+            </code></pre>
+        </section>
+
+        <section data-transition="none">
+            <h2>Query - Infinispan Storage</h2>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+     .indexing().index(Index.LOCAL)
+         .addProperty("default.worker.execution", "async")
+         .addProperty("default.directory_provider", "infinispan")
+     .build();
+
+EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
+            </code></pre>
+        </section>
+
+        <section data-transition="none">
+            <h2>Query - Filesystem Storage</h2>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+   .indexing().index(Index.LOCAL)
+         .addProperty("default.directory_provider", "filesystem")
+         .addProperty("default.indexBase", "/path/to/index);
+.build();
+            </code></pre>
+        </section>
+
+        <section data-transition="none">
+            <h2>Query - Infinispan <em>IndexManager</em></h2>
+	<section>
+            <pre><code class="java">
+Configuration configuration = new ConfigurationBuilder()
+     .indexing().index(Index.LOCAL)
+         .addProperty("default.worker.execution", "async")
+         .addProperty("default.indexmanager", 
+           "org.infinispan.query.indexmanager.InfinispanIndexManager")
+     .build();
+
+EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
+            </code></pre>
+	</section>
+	<section>
+		<img data-src="/images/JMSInfinispanArchitecture.png">
+	</section>
+        </section>
+        
+<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+	<h2>The Infinispan Lucene Directory</h2>
+	<section>
+		<p>Storing the Apache Lucene index in an high-performance in memory data grid</p>
+	</section>
+	<section>
+		<img data-src="/images/LuceneDirectoryDependencies.png">
+		<br/>
+		<p>You don't need Hibernate Search to cluster your existing Lucene application,
+but you'll need some external coordination to guarantee the single IndexWriter.</p>
+		<!--<a href="#/22/3">Used by Hibernate Search</a>-->
+	</section>
+</section>
+
+<section >
+	<h2>Infinispan Query and the Lucene Directory in action</h2>
+	<section>
+		<p>Weather Demo by Gustavo Nalle Fernandes</p>
+            <h4><a href="http://localhost:8080/">Demo</a></h4>
+            <ul>
+                <li>Indexed <pre><code>Cache&lt;Integer, DaySummary&gt;</code></pre></li>
+                <li>NOAA.gov data from 1901 to 2014</li>
+                <li>~10M summaries</li>
+                <li>Yearly country max recorded temperature by month</li>
+            </ul>
+	</section>
+</section>
+
+<section>
+<h2>What's on the horizon for Infinispan</h2>
+<ul>
+<li>Improvements in indexing performance</li>
+<li>Hadoop and Spark integration experiments</li>
+<li>Combining indexed & non-indexed query capabilities, including remote queries</li>
+</ul>
+</section>
+
+<section>
+<h2>What's coming for Hibernate Search</h2>
+<ul>
+<li>Upgrading to Lucene 5</li>
+<li>Experiment integrations with REST based Lucene servers (Solr, ElasticSearch)</li>
+<li>Improved backends to simplify clustering setup</li>
+<li>GSOC: generic JPA support and improved developer tooling</li>
+<li>A lot more! See also <a href="http://hibernate.org/search/roadmap/">the roadmap</a></li>
+</ul>
+</section>
+
+<!-- FIXME needs a recall of all concepts -->
+
+<!-- Wrapping up -->
+
+<section style="text-align: left;">
+<h2>Thank you!</h2>
+<p>Some references:</p>
+<ul>
+	<li><a href="https://lucene.apache.org/core/">Apache Lucene website</a></li>
+	<li><a href="http://hibernate.org/search/">Hibernate Search website</a>, the super simple <a href="http://github.com/Sanne/tweets-cli-demo">Hibernate Search JPA demo</a>, the <a href="https://github.com/hibernate/hibernate-search/tree/master/integrationtest/wildfly">WildFly integration tests</a></li>
+	<li>The <a href="http://infinispan.org/">Infinispan</a> website, the <a href="https://github.com/gustavonalle/weather-demo">Weather Demo</a> by <a href="https://github.com/gustavonalle/">@gustavonalle</a></li>
+	<li>The <a href="http://wildfly.org">WildFly</a> website</li>
+	<!--<li>The latest <a href="http://github.com/DmitryKey/luke">Luke</a> tool</li> -->
+	<li>Our team's blog <a href="http://in.relation.to/">in.relation.to</a></li>
+	<li><a href="?print-pdf">Export these slides to PDF</a><small>(requires Chrome)</small></li>
+</ul>
+</section>
+
+<!-- End -->
 
 			</div>
 
@@ -411,3 +904,4 @@ Reveal.addEventListener( 'customevent', function() {
 
 	</body>
 </html>
+
