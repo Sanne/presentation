@@ -1,5 +1,6 @@
-# Experiments
-Playground to experiment with presentation frameworks
+# Slides for an Hibernate Search / Infinispan Query presentation
+
+Best seen by running a local node.js server:
 
 1. Install [Node.js](http://nodejs.org/) and [Grunt](http://gruntjs.com/getting-started#installing-the-cli)
    On Fedora:
