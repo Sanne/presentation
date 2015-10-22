@@ -18,6 +18,11 @@ Best seen by running a local node.js server:
    $ grunt serve
    ```
 
+Optional. If `grunt` is not found, you might need to install it explicitly:
+   ```sh
+   $ sudo npm install -g grunt-cli
+   ```
+
 4. Open <http://localhost:8000> to view your presentation
 
    You can change the port by using `grunt serve --port 8001`.
