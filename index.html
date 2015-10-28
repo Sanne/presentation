@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Apache Lucene for JavaEE Developers</title>
+		<title>Apache Lucene for Java EE Developers</title>
 
 		<meta name="description" content="A presentation about Apache Lucene, Hibernate Search, Infinispan Query, the Infinispan Directory and OSS related ecosystem">
 		<meta name="author" content="Sanne Grinovero">
@@ -41,8 +41,8 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Apache Lucene for JavaEE Developers</h1>
-					<h3>Virtual:JBUG</h3>
+					<h1>Apache Lucene for Java EE Developers</h1>
+					<h3>JavaOne:2015</h3>
 					<p>
 						<small>by <a href="http://twitter.com/sannegrinovero">@SanneGrinovero</a></small>
 					</p>
@@ -63,17 +63,16 @@
 						<p>Hibernate OGM</p>
 </section>
 <section>
-						<h4>Also contributing to Infinispan</h4>
-						<p>The Lucene guy: <em>Infinispan Query</em>, <em>Infinispan Lucene Directory</em></p>
+						<h4>contributing to Infinispan</h4>
+						<p>the Lucene guy: <em>Infinispan Query</em>, <em>Infinispan Lucene Directory</em>, clustering extensions for <em>Hibernate Search</em></p>
 </section>
 <section>
 						<h4>Other projects I help with...</h4>
 						<p>WildFly, JGroups, <em>Apache Lucene</em>, ...</p>
 </section>
 <section>
-						<h4>Supported by </h4>
-						<p>Red Hat: Principal Software Engineer, R&D</p>
-						<p>...and a lot of passion for OSS</p>
+						<h4>Red Hat</h4>
+						<p>Principal Software Engineer, middleware R&D</p>
 </section>
 				</section>
 
@@ -106,7 +105,7 @@
 				</section>
 
 				<section>
-					<h2>Let's refresh some history on the WikiPedia</h2>
+					<h2>Let's refresh some lessons on the WikiPedia</h2>
 					<section>
 <pre><code data-trim contenteditable class="fragment">Select * from WikipediaPages p where p.content LIKE ?;</code></pre>
 <pre><code data-trim contenteditable class="fragment">Select * from WikipediaPages p where p.title LIKE ?;</code></pre>
@@ -130,12 +129,11 @@
 				</section>
 
 				<section>
-					<h2>Am I cheating?</h2>
+					<h2>Am I bending the truth?</h2>
 <section>
-					<p class="fragment">I'm quoting some very successfull web companies.</p>
+					<p class="fragment">I'm quoting successfull web companies.</p>
 					<p class="fragment">How many can you list which do not provide an effective search engine?</p>
-
-<p class="fragment">Why is that?</p>
+<p class="fragment"><em>Human interaction</em></p>
 
 </section>
 </section>
@@ -144,7 +142,7 @@
 	<h2>Requirements for a search engine</h2>
 	<section>
 		<p class="fragment">Need to guess what you want w/o you typing all of the content</p>
-		<p class="fragment">We all hate forms</p>
+		<p class="fragment">Humans hate complex forms: can't you just guess what I need?</p>
 		<p class="fragment">We want the results in the blink of an eye</p>
 		<p class="fragment">We want the right result on top: <em>Relevance</em></p>
 	</section>
@@ -190,7 +188,7 @@
 <section>
 	<h2>As a JavaEE developer:</h2>
 	<section>
-		<p class="fragment">You are familiar with JPA</p>
+		<p class="fragment">You are familiar with the <em>Java Persistence API</em></p>
 		<p class="fragment">But Lucene is much better than a relational database to address this problem</p>
 		<p class="fragment">Easy integration with the platform is a requirement</p>
 	</section>
@@ -200,15 +198,15 @@
 </section>
 
 <section>
-	<h2>Let's introduce Apache Lucene via Hibernate Search</h2>
+	<h2>Apache Lucene from a JPA perspective</h2>
 	<section>
 <br/><br/>
 <img size="30%" data-src="/images/HibernateLargeLogo.png"></p>
-		<p>Deeply but transparently integrated with Hibernate's <em>EntityManager</em>
+		<p><em>Hibernate Search</em>: deeply but transparently integrated with Hibernate's <em>EntityManager</em>
 </section>
 <section>
 <ul>
-	<li>Internally uses advanced Apache Lucene features, but protects your deadlines from the lower level details</li>
+	<li>Internally uses advanced Apache Lucene features, but protects you from the lower level details</li>
 	<li>Gets great performance out of it</li>
 	<li>Simple annotations, yet many flexible override options</li>
 </ul>
@@ -229,16 +227,10 @@
 
 <section>
 	<h2>Hibernate Search Quickstart</h2>
-<pre><code>
-<dependency>
+<pre><code><dependency>
    <groupId>org.hibernate</groupId>
    <artifactId>hibernate-search-orm</artifactId>
    <version>5.5.0.Final</version>
-</dependency>
-<dependency>
-   <groupId>org.hibernate</groupId>
-   <artifactId>hibernate-core</artifactId>
-   <version>5.0.2.Final</version>
 </dependency>
 <dependency>
    <groupId>org.hibernate</groupId>
@@ -300,7 +292,7 @@ public class Actor {
 	<section>
 <pre><code>
 @Entity
-public class DVD {
+public class Movie {
 
 	@Id
 	Integer id;
@@ -316,7 +308,7 @@ public class DVD {
 	<section>
 <pre><code>
 @Indexed @Entity
-public class DVD {
+public class Movie {
 
 	@Id
 	Integer id;
@@ -353,7 +345,7 @@ public class DVD {
 		</tbody>
 	</table>
 	<br/>
-	<h4>Index fields for DVD</h4>
+	<h4>Index fields for Movie</h4>
 	<table>
 		<thead>
 			<tr>
@@ -378,7 +370,7 @@ public class DVD {
 </section>
 
 <section>
-	<h2>Run a Lucene Query but get JPA managed results</h2>
+	<h2>Run a Lucene Query & get JPA managed results</h2>
 <pre><code>
 String[] productFields = { "title", "actors.name" };
 
@@ -388,10 +380,10 @@ FullTextEntityManager ftEm =
    Search.getFullTextEntityManager( entityManager );
 
 FullTextQuery query = // extends javax.persistence.Query
-   ftEm.createFullTextQuery( luceneQuery, DVD.class );
+   ftEm.createFullTextQuery( luceneQuery, Movie.class );
 
-List dvds = // Managed entities!
-   query.setMaxResults(100).getResultList();
+List movies = query.setMaxResults(100).getResultList();
+// Managed entities!
 
 int totalNbrOfResults = query.getResultSize();
 </pre></code>
@@ -439,9 +431,9 @@ List results = fullTextEntityManager
    .createFullTextQuery( query, Product.class )
    .enableFullTextFilter( "minorsFilter" )
    .enableFullTextFilter( "specialDayOffers" )
-      .setParameter( "day", “20150714” )
+      .setParameter( "day", “20151029” )
    .enableFullTextFilter( "inStockAt" )
-      .setParameter( "location", "Newcastle" )
+      .setParameter( "location", "San Francisco" )
    .list();
 </pre></code>
 </section>
@@ -528,7 +520,7 @@ List results = fullTextEntityManager
     <h2>Infinispan / JavaEE?</h2>
     <ul>
         <li class="fragment">JavaEE: JCache implementation</li>
-        <li class="fragment">A core component of WildFly</li>
+        <li class="fragment">A core component of WildFly / JBoss EAP</li>
         <li class="fragment">"Embedded" mode does not depend on WildFly</li>
         <li class="fragment">Hibernate 2n level cache</li>
     </ul>
@@ -558,23 +550,28 @@ List results = fullTextEntityManager
 		<img data-src="./images/HibernateSearchInfinispanQueryRelation.png">
 	</section>
 	<section>
+		<br/><br/>
 		<p>Same annotations, not an entity:</p>
+		<p>
 <pre><code class="java">
 @Indexed
 @AnalyzerDef(name = "lowercaseKeyword",
-        tokenizer = @TokenizerDef(factory = KeywordTokenizerFactory.class),
-        filters = {@TokenFilterDef(factory = LowerCaseFilterFactory.class)}
+        tokenizer = @TokenizerDef
+		(factory=KeywordTokenizerFactory.class),
+        filters = {
+		@TokenFilterDef
+		(factory = LowerCaseFilterFactory.class)
+		}
 )
-@SerializeWith(CountryExternalizer.class)
 public class Country {
 
     @Field(store = Store.YES)
     @Analyzer(definition = "lowercaseKeyword")
     private String name;
-</code></pre>
+</code></pre></p>
 	</section>
 	<section>
-<p>Store the Java POJO classes in the cache directly:</p>
+<p>Store the Java POJO instances in the cache directly:</p>
 <pre><code class="java">
 Country uk = ...
 cache.put("UK", uk );
@@ -583,7 +580,7 @@ cache.put("UK", uk );
 	</section>
 
 <section>
-            <h2>Using Lucene Query Parser</h2>
+            <h3>Using Lucene Query Parser</h3>
             <pre><code class="java" style="max-width: 100%">
 QueryParser qp = new QueryParser("default", new StandardAnalyzer());
                 
@@ -598,7 +595,7 @@ CacheQuery cq = Search.getSearchManager(cache)
         </section>
 
         <section>
-            <h2>Count entities</h2>
+            <h3>Count entities</h3>
             <pre><code class="java" style="max-width: 100%">
 import org.apache.lucene.search.MatchAllDocsQuery;
 
@@ -657,8 +654,8 @@ cache.put("key", "data goes here");
 &lt;/infinispan&gt;
             </code>
             <code class="java">
-DefaultCacheManager cm = new DefaultCacheManager("infinispan.xml");
-Cache&lt;Integer, String&gt; cache = cacheManager.getCache("testCache");
+DefaultCacheManager cm = new DefaultCacheManager("infini.xml");
+Cache&lt;Integer, String&gt; cache = cacheManager.getCache("Cache1");
             </code></pre>
         </section>
 
@@ -812,13 +809,13 @@ Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
 	<section>
 		<img data-src="./images/LuceneDirectoryDependencies.png">
 		<br/>
-		<p>You don't need Hibernate Search to cluster your existing Lucene application,
+		<p>You don't <em>need</em> Hibernate Search to cluster your existing Lucene application,
 but you'll need some external coordination to guarantee the single IndexWriter.</p>
 		<!--<a href="#/22/3">Used by Hibernate Search</a>-->
 	</section>
 </section>
 
-<section >
+<!--section >
 	<h2>Infinispan Query and the Lucene Directory in action</h2>
 	<section>
 		<p>Weather Demo by Gustavo Nalle Fernandes</p>
@@ -839,7 +836,23 @@ but you'll need some external coordination to guarantee the single IndexWriter.<
 <li>Hadoop and Spark integration experiments</li>
 <li>Combining indexed & non-indexed query capabilities, including remote queries</li>
 </ul>
+</section-->
+
+<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+	<h2>What's being worked on?</h2>
 </section>
+
+
+<section>
+<h2>Hibernate Search for non-Hibernate JPA ?!</h2>
+<p>Google Summer of Code student Martin Braun</p>
+<ul>
+<li>Database triggers based indexing bus (MySQL/MariaDB, PostgreSQL, HSQLDB)</li>
+<li>Works also with <em>OpenJPA</em> and <em>EclipseLink</em></li>
+</ul>
+<p><a href="https://github.com/Hotware/Hibernate-Search-GenericJPA">github.com/Hotware/Hibernate-Search-GenericJPA</a></p>
+</section>
+
 
 <section>
 <h2>What's coming for Hibernate Search</h2>
@@ -850,6 +863,7 @@ but you'll need some external coordination to guarantee the single IndexWriter.<
 <li>GSOC: generic JPA support and improved developer tooling</li>
 <li>A lot more! See also <a href="http://hibernate.org/search/roadmap/">the roadmap</a></li>
 </ul>
+</section>
 </section>
 
 <!-- FIXME needs a recall of all concepts -->
