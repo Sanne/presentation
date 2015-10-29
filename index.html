@@ -391,7 +391,7 @@ int totalNbrOfResults = query.getResultSize();
 </section>
 
 <section>
-	<h2>Hibernate Search: basics demo</h2>
+	<h2>Let's see some code in action...</h2>
 	<!-- TODO update basic demo to match this domain model -->
 </section>
 
@@ -506,24 +506,24 @@ List results = fullTextEntityManager
 <section>
     <h2>What is Infinispan?</h2>
     <ul>
-        <li class="fragment">In Memory Key/Value Store</li>
-        <li class="fragment">ASL v2 License</li>
-        <li class="fragment">Scalable</li>
-        <li class="fragment">JTA Transactions</li>
-        <li class="fragment">Persistence (File/JDBC/LevelDB/...)</li>
-        <li class="fragment">Local/Clustered</li>
-        <li class="fragment">Embedded/Server</li>
-        <li class="fragment">...</li>
+        <li>In Memory Key/Value Store</li>
+        <li>ASL v2 License</li>
+        <li>Scalable</li>
+        <li>JTA Transactions</li>
+        <li>Persistence (File/JDBC/LevelDB/...)</li>
+        <li>Local/Clustered</li>
+        <li>Embedded/Server</li>
+        <li>...</li>
     </ul>
 </section>
 
 <section>
     <h2>Infinispan / JavaEE?</h2>
     <ul>
-        <li class="fragment">JavaEE: JCache implementation</li>
-        <li class="fragment">A core component of WildFly / JBoss EAP</li>
-        <li class="fragment">"Embedded" mode does not depend on WildFly</li>
-        <li class="fragment">Hibernate 2n level cache</li>
+        <li>JavaEE: JCache implementation</li>
+        <li>A core component of WildFly / JBoss EAP</li>
+        <li>"Embedded" mode does not depend on WildFly</li>
+        <li>Hibernate 2n level cache</li>
     </ul>
 </section>
 
@@ -536,6 +536,14 @@ List results = fullTextEntityManager
     </ul>
 </section>
 
+<section>
+    <h2>Why Infinispan?</h2>
+    <ul>
+        <li>You already have it!</li>
+        <li>Wildfly, JBoss EAP, and any other Java container supported</li>
+        <li>Integrates in any cloud system, esp. OpenShift 3 with Kubernetes and Docker</li>
+    </ul>
+</section>
 
 <section>
 	<h2>Hibernate Search & Infinispan Query</h2>
@@ -554,8 +562,7 @@ List results = fullTextEntityManager
 		<br/><br/>
 		<p>Same annotations, not an entity:</p>
 		<p>
-<pre><code class="java">
-@Indexed
+<pre><code class="java">@Indexed
 @AnalyzerDef(name = "lowercaseKeyword",
         tokenizer = @TokenizerDef
 		(factory=KeywordTokenizerFactory.class),
@@ -642,50 +649,11 @@ cache.put("key", "data goes here");
         </section>
 
         <section>
-            <h2>Add persistence (xml)</h2>
-            <pre><code class="xml">
-&lt;infinispan&gt;
-     &lt;cache-container&gt; 
-         &lt;local-cache name=&quot;testCache&quot;&gt;
-            &lt;persistence&gt;
-               &lt;leveldb-store path=&quot;/tmp/folder&quot;/&gt;
-            &lt;/persistence&gt;
-         &lt;/local-cache&gt;
-     &lt;/cache-container&gt;
-&lt;/infinispan&gt;
-            </code>
-            <code class="java">
-DefaultCacheManager cm = new DefaultCacheManager("infini.xml");
-Cache&lt;Integer, String&gt; cache = cacheManager.getCache("Cache1");
-            </code></pre>
-        </section>
-
-        <section>
-            <h2>Add persistence (programmatic)</h2>
-            <pre><code class="java">
-Configuration configuration = new ConfigurationBuilder()
-    .persistence()
-    .addStore(LevelDBStoreConfigurationBuilder.class)
-    .build();
-
-DefaultCacheManager cm = new DefaultCacheManager(configuration);
-Cache&lt;Integer, String&gt; cache = cm.getCache();
-            </code></pre>
-        </section>
-
-        <section>
             <h2>Clustering - Replicated</h2>
             <pre><code class="java">
-GlobalConfiguration globalCfg = new GlobalConfigurationBuilder()
-     .transport().defaultTransport()
-     .build();
-     
 Configuration cfg = new ConfigurationBuilder()
      .clustering().cacheMode(CacheMode.REPL_SYNC)
      .build();
-                
-EmbeddedCacheManager cm = new DefaultCacheManager(globalCfg, cfg);
-Cache&lt;Integer, String&gt; cache = cm.getCache();
             </code></pre>
             <img src="images/repl.png"/>
         </section>
@@ -693,17 +661,10 @@ Cache&lt;Integer, String&gt; cache = cm.getCache();
         <section>
             <h2>Clustering - Distributed</h2>
             <pre><code class="java">
-GlobalConfiguration globalCfg = new GlobalConfigurationBuilder()
-     .transport().defaultTransport()
-     .build();
-     
-Configuration configuration = new ConfigurationBuilder()
+Configuration cfg = new ConfigurationBuilder()
      .clustering().cacheMode(CacheMode.DIST_SYNC)
      .hash().numOwners(2).numSegments(100)
      .build();
-
-EmbeddedCacheManager cm = new DefaultCacheManager(globalConfiguration, configuration);
-Cache&lt;Integer, String&gt; cache = cm.getCache();
             </code></pre>
             <img src="images/dist.png"/>
         </section>
@@ -714,18 +675,18 @@ Cache&lt;Integer, String&gt; cache = cm.getCache();
                 <li>Apache Lucene Index</li>
                 <li>Native Map Reduce</li>
                 <li>Index-less</li>
-		<li>Hadoop and Spark (coming)</li>
+		<li>Hadoop and Spark integration</li>
             </ul>
         </section>
 
         <section>
             <h2>Indexing - Configuration</h2>
             <pre><code class="java">
-Configuration configuration = new ConfigurationBuilder()
+Configuration cfg = new ConfigurationBuilder()
      .indexing().index(Index.ALL)
      .build();
 
-EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+EmbeddedCacheManager cm = new DefaultCacheManager(cfg);
 Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
             </code></pre>
         </section>
@@ -733,12 +694,12 @@ Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
         <section data-transition="none">
             <h2>Query - SYNC/ASYNC</h2>
             <pre><code class="java">
-Configuration configuration = new ConfigurationBuilder()
+Configuration cfg = new ConfigurationBuilder()
      .indexing().index(Index.LOCAL)
          .addProperty("default.worker.execution", "async")
      .build();
 
-EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+EmbeddedCacheManager cm = new DefaultCacheManager(cfg);
 Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
             </code></pre>
         </section>
@@ -746,13 +707,13 @@ Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
         <section data-transition="none">
             <h2>Query - RAM Storage</h2>
             <pre><code class="java">
-Configuration configuration = new ConfigurationBuilder()
+Configuration cfg = new ConfigurationBuilder()
      .indexing().index(Index.LOCAL)
          .addProperty("default.worker.execution", "async")
          .addProperty("default.directory_provider", "ram")
      .build();
 
-EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+EmbeddedCacheManager cm = new DefaultCacheManager(cfg);
 Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
             </code></pre>
         </section>
@@ -760,13 +721,13 @@ Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
         <section data-transition="none">
             <h2>Query - Infinispan Storage</h2>
             <pre><code class="java">
-Configuration configuration = new ConfigurationBuilder()
+Configuration cfg = new ConfigurationBuilder()
      .indexing().index(Index.LOCAL)
          .addProperty("default.worker.execution", "async")
          .addProperty("default.directory_provider", "infinispan")
      .build();
 
-EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+EmbeddedCacheManager cm = new DefaultCacheManager(cfg);
 Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
             </code></pre>
         </section>
@@ -786,19 +747,27 @@ Configuration configuration = new ConfigurationBuilder()
             <h2>Query - Infinispan <em>IndexManager</em></h2>
 	<section>
             <pre><code class="java">
-Configuration configuration = new ConfigurationBuilder()
+Configuration cfg = new ConfigurationBuilder()
      .indexing().index(Index.LOCAL)
          .addProperty("default.worker.execution", "async")
          .addProperty("default.indexmanager", 
-           "org.infinispan.query.indexmanager.InfinispanIndexManager")
+ "org.infinispan.query.indexmanager.InfinispanIndexManager")
      .build();
 
-EmbeddedCacheManager cm = new DefaultCacheManager(configuration);
+EmbeddedCacheManager cm = new DefaultCacheManager(cfg);
 Cache&lt;Integer, DaySummary&gt; cache = cm.getCache();
             </code></pre>
 	</section>
 	<section>
 		<img data-src="./images/JMSInfinispanArchitecture.png">
+	</section>
+        <section>
+		<h2>Cloud options recap:</h2>
+            <ul>
+                <li>Index replication options</li>
+                <li>Index storage options</li>
+                <li>Composition and profiles: <em>IndexManager</em> or make your own</li>
+            </ul>
 	</section>
         </section>
         
@@ -869,13 +838,23 @@ but you'll need some external coordination to guarantee the single IndexWriter.<
 <h2>And much more!</h2>
 <ul>
 <li>GSOC student Dmitry Bocharov working on Eclipse tooling</li>
-<li>JBoss Forge 3 integration in the works</li>
+<li>JBoss Forge 3 integration</li>
 <li>WildFly Swarm fragments</li>
 <li>More performance enhancements for Infinispan indexing</li>
-<li>Example configurations for highly reliable JMS master indexing nodes with WildFly</li>
+<li>Example configurations and profiles (HA & JMS master indexing nodes)</li>
 </ul>
 <p>See also <a href="http://hibernate.org/search/roadmap/">the roadmap</a>, and help us shape it!</p>
 </section>
+
+<section>
+<h2>Participate!</h2>
+<p>We love to hear from you</p>
+<p>We love contributions</p>
+<p>Help yourself and countless others</p>
+</ul>
+</section>
+
+
 </section>
 
 <!-- FIXME needs a recall of all concepts -->
