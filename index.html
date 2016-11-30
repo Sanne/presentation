@@ -41,8 +41,8 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Hibernate & Lucene</h1>
-					<h3>Apache Lucene & Solr London User Group : February 2016</h3>
+					<h1>Hibernate & Elasticsearch</h1>
+					<h3>Elastic London User Group : November 2016</h3>
 					<p>
 						<small>by <a href="http://twitter.com/sannegrinovero">@SanneGrinovero</a></small>
 					</p>
@@ -57,16 +57,10 @@
 				<section>
 					<h2>Who am I?</h2>
 <section>
-						<h4>Red Hat</h4>
-						<p>Principal Software Engineer</p>
-						<p>Middleware R&D</p>
-						<p>Dutch, Italian, living now in London</p>
-</section>
-<section>
 						<h3>Hibernate Team</h3>
 						<p><em>Hibernate Search</em> project lead</p>
-						<p>Hibernate ORM</p>
-						<p>Hibernate OGM</p>
+						<p>Hibernate ORM - performance and memory consumption</p>
+						<p>Hibernate OGM - NoSQL R&D</p>
 </section>
 <section>
 						<h4>contributing to Infinispan</h4>
@@ -507,9 +501,11 @@ List results = fullTextEntityManager
         <li>A core component of WildFly / JBoss EAP</li>
         <li>"Embedded" mode does not depend on WildFly</li>
         <li>Hibernate 2n level cache</li>
-	<li>Distributed Java8 lambdas & streams</li>
-	<li>Apache Spark integrations (WIP)</li>
-	<li>Kubernetes, OpenShift and other cloud integrations (WIP)</li>
+        <li>Distributed Java8 lambdas & streams</li>
+        <li>Apache Spark integrations</li>
+        <li>Apache Camel integrations</li>
+        <li>Hibernate OGM storage</li>
+        <li>Kubernetes, OpenShift and other cloud integrations</li>
     </ul>
 </section>
 
@@ -815,14 +811,9 @@ but you'll need some external coordination to guarantee the single IndexWriter.<
 <ul>
 	<li>Apache Lucene: <a href="https://lucene.apache.org/core/">lucene.apache.org/core</a></li>
 	<li>Hibernate team's blog <a href="http://in.relation.to/">in.relation.to</a></li>
-	<li>Hibernate Search: <a href="http://hibernate.org/search/">hibernate.org/search</a>
-		<ul>
-		<li>the super simple Hibernate Search JPA demo: <a href="http://github.com/Sanne/tweets-cli-demo">github.com/Sanne/tweets-cli-demo</a></li>
-		<li>Source code, with JEE integration tests: <a href="https://github.com/hibernate/hibernate-search">github.com/hibernate/hibernate-search</a></li>
-		</ul></li>
+	<li>Hibernate Search: <a href="http://hibernate.org/search/">hibernate.org/search</a></li>
 	<li>WildFly: <a href="http://wildfly.org">wildfly.org</a></li>
 	<li>Infinispan: <a href="http://infinispan.org/">infinispan.org</a><!--, the <a href="https://github.com/gustavonalle/weather-demo">Weather Demo</a> by <a href="https://github.com/gustavonalle/">@gustavonalle</a></li>-->
-	<!--<li>The latest <a href="http://github.com/DmitryKey/luke">Luke</a> tool</li> -->
 	<li><a href="?print-pdf">Export these slides to PDF</a><small>(requires Chrome)</small></li>
 </ul>
 </section>
