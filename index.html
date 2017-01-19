@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Hibernate & Lucene</title>
+		<title>Hibernate & Elasticsearch</title>
 
 		<meta name="description" content="A presentation about Apache Lucene, Hibernate Search, Infinispan Query, the Infinispan Directory and OSS related ecosystem">
 		<meta name="author" content="Sanne Grinovero">
@@ -42,9 +42,9 @@
 			<div class="slides">
 				<section>
 					<h1>Hibernate & Elasticsearch</h1>
-					<h3>Elastic London User Group : November 2016</h3>
+					<h3>19 January 2016</h3>
 					<p>
-						<small>by <a href="http://twitter.com/sannegrinovero">@SanneGrinovero</a></small>
+						<small>by <a href="http://twitter.com/sannegrinovero">@SanneGrinovero</a> & <a href="http://twitter.com/emmanuelbernard">@emmanuelbernard</a></small>
 					</p>
 					<aside class="notes">
 <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
@@ -55,11 +55,11 @@
 				</section>
 
 				<section>
-					<h2>Who am I?</h2>
+					<h3>Who is Sanne Grinovero?</h3>
 <section>
 						<h3>Hibernate Team</h3>
 						<p><em>Hibernate Search</em> project lead</p>
-						<p>Hibernate ORM - performance and memory consumption</p>
+						<p>Hibernate ORM - performance improvements</p>
 						<p>Hibernate OGM - NoSQL R&D</p>
 </section>
 <section>
@@ -67,45 +67,52 @@
 						<p>the Lucene integrations: <em>Infinispan Query</em>, <em>Infinispan Lucene Directory</em>, cluster extensions for <em>Hibernate Search</em></p>
 </section>
 <section>
-						<h4>Some other projects I sometimes help with:</h4>
+						<h4>Some other projects I occasionally help with:</h4>
 						<p>WildFly, JGroups, <em>Apache Lucene</em>, OpenJDK, Bean Validation,...</p>
 </section>
 				</section>
 
+				<section>
+					<h3>Who is Emmanuel Bernard?</h3>
+						<h4>Architect of the Data Platforms at Red Hat</h4>	
+						<p><em>Hibernate Search</em> project founder</p>
+						<p>Leading all of Hibernate R&D</p>
+</section>
+
 <section>
 	<h2>Agenda</h2>
 	<ul>
-		<li>Demo !</li>
-		<li>Notes on how to do it yourself</li>
-		<li>What's ahead</li>
+		<li>What's Hibernate Search again?</li>
+		<li>Quick demo</li>
+		<li>Overview of integrations and roadmap</li>
+		<li>Wishes for the future</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Hibernate Search Quickstart</h2>
-<pre><code><!-- Add Hibernate Search to Hibernate -->
+<pre><code><!-- Add the main Hibernate Search depedency -->
 <dependency>
    <groupId>org.hibernate</groupId>
    <artifactId>hibernate-search-orm</artifactId>
-   <version>5.6.0.Beta4</version>
+   <version>5.6.0.CR1</version>
 </dependency>
 
-<!-- Add also enable the Elasticsearch extensions -->
+<!-- Also enable the new Elasticsearch integration -->
 <dependency>
    <groupId>org.hibernate</groupId>
    <artifactId>hibernate-search-elasticsearch</artifactId>
-   <version>5.6.0.Beta4</version>
+   <version>5.6.0.CR1</version>
 </dependency>
 </pre></code>
 </section>
 
 <section>
-            <h2>Configure it</h2>
-        <pre><code class="xml">
-&lt;property name="hibernate.search.default.indexmanager" value="elasticsearch"/&gt;
-&lt;property name="hibernate.search.default.elasticsearch.host" value="http://127.0.0.1:9200"/&gt;
-&lt;property name="hibernate.search.default.elasticsearch.index_schema_management_strategy" value="CREATE"/&gt;
-&lt;property name="hibernate.search.default.elasticsearch.required_index_status" value="yellow"/&gt;
+            <h2>Set basic configuration properties</h2>
+        <pre><code>
+hibernate.search.default.indexmanager elasticsearch
+hibernate.search.default.elasticsearch.host http://127.0.0.1:9200
+hibernate.search.default.elasticsearch.index_schema_management_strategy CREATE
 </code>
 </pre>
 </section>
@@ -113,7 +120,7 @@
 
 <section>
 	<h2>Choose what and how to index</h2>
-	<section>
+	<section data-transition="fade">
 <pre><code>
 @Entity
 public class Actor {
@@ -127,7 +134,7 @@ public class Actor {
 </code>
 </pre>
 	</section>
-	<section>
+	<section data-transition="fade">
 <pre><code>
 @Indexed @Entity
 public class Actor {
@@ -141,7 +148,7 @@ public class Actor {
 </code>
 </pre>
 	</section>
-	<section>
+	<section data-transition="fade">
 <pre><code>
 @Indexed @Entity
 public class Actor {
@@ -160,13 +167,14 @@ public class Actor {
 
 <section>
 	<h2>Relations</h2>
-	<section>
+	<section data-transition="fade">
 <pre><code>
 @Entity
 public class Movie {
 
 	@Id
 	Integer id;
+
 
 	String title;
 
@@ -176,7 +184,41 @@ public class Movie {
 }</code>
 </pre>
 	</section>
-	<section>
+	<section data-transition="fade">
+<pre><code>
+@Indexed @Entity
+public class Movie {
+
+	@Id
+	Integer id;
+
+
+	String title;
+
+	@ManyToMany
+	Set&lt;Actor&gt; actors = new HashSet&lt;&gt;();
+
+}</code>
+</pre>
+	</section>
+<section data-transition="fade">
+<pre><code>
+@Indexed @Entity
+public class Movie {
+
+	@Id
+	Integer id;
+
+	@Field
+	String title;
+
+	@ManyToMany
+	Set&lt;Actor&gt; actors = new HashSet&lt;&gt;();
+
+}</code>
+</pre>
+</section>
+<section data-transition="fade">
 <pre><code>
 @Indexed @Entity
 public class Movie {
@@ -192,11 +234,12 @@ public class Movie {
 
 }</code>
 </pre>
-	</section>
+</section>
+
 </section>
 
 <section>
-	<h2>Profit from superpower queries & get managed results</h2>
+	<h2>Profit...</h2>
 <pre><code>
 String[] productFields = { "title", "actors.name" };
 
@@ -208,11 +251,14 @@ FullTextEntityManager ftEm =
 FullTextQuery query = // extends javax.persistence.Query
    ftEm.createFullTextQuery( luceneQuery, Movie.class );
 
-List movies = query.setMaxResults(10).getResultList();
-// Managed entities!
+List movies = query.setMaxResults(10).getResultList();// Managed entities!
 
 int totalNbrOfResults = query.getResultSize();
 </pre></code>
+</section>
+
+<section data-transition="slide" data-background="#1055bc" data-background-transition="zoom">
+	<h2>Demo!</h2>
 </section>
 
 <section>
@@ -237,10 +283,6 @@ List results = fullTextEntityManager
    .list();
 </pre></code>
 </section>
-	<section>
-<br/>
-<img data-src="./images/Filters.png"></p>
-</section>
 </section>
 
 <section>
@@ -253,6 +295,13 @@ List results = fullTextEntityManager
 	<img data-src="./images/SpatialFilteringConcept.png"></p>
 </section>
 
+<section>
+<h2>Beyond "Hibernate ORM" integrations!</h2>
+<section>
+<br></br>
+		<img data-src="./images/HibernateSearchEngineWhereItFits.svg">
+	</section>
+	</section>
 <section>
             <h2>Hibernate OGM</h2>
             <p>All the same as Hibernate ORM, but for NoSQL</p>
@@ -278,49 +327,10 @@ List results = fullTextEntityManager
 		<li>Same indexing configuration options</li>
 	</ul>
 	</section>
-	<section>
-		<br/><br/>
-		<img data-src="./images/HibernateSearchInfinispanQueryRelation.png">
-	</section>
-	<section>
-		<br/><br/>
-		<p>Same annotations, not an entity:</p>
-		<p>
-<pre><code class="java">@Indexed
-public class Country {
-
-    @Field(store = Store.YES)
-    @Analyzer(definition = "lowercaseKeyword")
-    private String name;
-</code></pre></p>
-	</section>
-	<section>
-<p>Store the Java POJO instances in the cache directly:</p>
-<pre><code class="java">
-Country uk = ...
-cache.put("UK", uk );
-</code>
-</pre>
-	</section>
-
-<section>
-            <pre><code class="java" style="max-width: 100%">
-QueryParser qp = new QueryParser("default", new StandardAnalyzer());
-                
-Query luceneQ = qp
- .parse("+station.name:airport +year:2014 +month:12 +(avgTemp < 0)");
-
-CacheQuery cq = Search.getSearchManager(cache)
-                           .getQuery(luceneQ, DaySummary.class);
-                
-List&lt;Object&gt; results = query.list();
-            </code></pre>
-        </section>
-</section>
-
 
         <section>
-            <h2>Getting Started with Infinispan</h2>
+<br/><br/>	
+            <p>Booting Infinispan<p>
         <pre><code class="xml">
 &lt;dependency&gt;
    &lt;groupId&gt;org.infinispan&lt;/groupId&gt;
@@ -335,6 +345,46 @@ Cache&lt;String,String&gt; cache = cacheManager.getCache();
 cache.put("key", "data goes here");
         </code></pre>
         </section>
+	<section>
+		<br/><br/>
+		<p>Same annotations, not an entity:</p>
+		<p>
+<pre><code class="java">@Indexed
+public class Country {
+
+    @Field(store = Store.YES)
+    @Analyzer(definition = "lowercaseKeyword")
+    private String name;
+
+...
+</code></pre></p>
+	</section>
+	<section>
+<p>Store the Java POJO instances in the cache directly:</p>
+<pre><code class="java">
+
+Country uk = ...
+cache.put("UK", uk );
+
+</code>
+</pre>
+	</section>
+
+	<section>
+<p>Query it!</p>
+            <pre><code class="java" style="max-width: 100%">
+QueryParser qp = new QueryParser("default", new StandardAnalyzer());
+                
+Query luceneQ = qp
+ .parse("+station.name:airport +year:2014 +month:12 +(avgTemp < 0)");
+
+CacheQuery cq = Search.getSearchManager(cache)
+                           .getQuery(luceneQ, DaySummary.class);
+                
+List&lt;Object&gt; results = query.list();
+            </code></pre>
+        </section>
+</section>
 
 <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
 	<h2>What's coming next?</h2>
@@ -342,18 +392,70 @@ cache.put("key", "data goes here");
 
 <section>
 <h2>Hibernate Search planning</h2>
-<p>Always depending on feedback..</p>
 <ul>
-<li>Release 5.6.0.CR1 in 1/2 weeks</li>
-<li>Release both 5.6 and 5.7 shortly after</li>
-<li>Elasticsearch 5.0!</li>
-<li>Elasticsearch clients?</li>
+<li>Release 5.6.0.Final in a few days</li>
+<li>Release 5.7 shortly after to catch up with Hibernate ORM</li>
+<li>Elasticsearch 5.0 ?</li>
+<li>Elasticsearch clients ?</li>
 <li>Properly "detach" from the Lucene API -> 6.0</li>
 <li>Prototype Apache Solr integration (6.1?)</li>
 </ul>
 </section>
 
+<section>
+<h2>Wishes on Elasticsearch:</h2>
+	<section>
+Warning! wishful thinking ahead...
+	</section>
+	<section>
+<br/>
+<h3>Dry-run or “all or nothing” for schema updates</h3>
+<ul>
+<li>Allow a single Batch?</li>
+<li>Transactional (handle client crash)?</li>
+<li>Semaphore to allow a single client to initiate admin ops?</li>
+</ul>
+	</section>
+	<section>
+<h3>Live incremental update of Analyzers</h3>
+<p>Be able to add new analyzer definitions w/o having to temporarily close the index
+</p>
+	</section>
+	<section>
+<h3>Allow faithful projections for all types</h3>
+<ul>
+<li>We currently need to store the source document to make sure we can faithfully store e.g. a java.time.ZonedDateTime, as the "stored" field will always return them in UTC.</li>
+<li>The benefits of storing the source document are understood, still we don't want to force this requirement.</li>
+</ul>
+	</section>
+	<section>
+<h3>Improve backwards compatibility</h3>
+<ul>
+<li>We can't ask users to update their client applications at the same time as they upgrade Elasticsearch: allow breaking the process down in smaller steps.</li>
+<li>We will try to work towards supporting multiple "dialects": detect the version of Elasticsearch and apply variations to the generated requests. (here be dragons?)</li>
+<li>Same for JVM versions: the client needs to be more conservative.
+</ul>
+	</section>
+	<section>
+<br/>
+<h4>New Elasticsearch client: release and packaging process</h4>
+<ul>
+<li>Same repository? Wondering if cross-checks of version compatibility will be pratical.</li>
+<li>Interest in packaging it as a WildFly Swarm Fraction? Happy to help, would be nice to have it released together with any new client release.</il>
+</ul>
+	</section>
+</section>
 
+<section>
+<h2>Digression: WildFly Swarm Fraction?</h2>
+<p>Aka "JBoss Module" packaging
+<ul>
+<li>the project influenced Java 9's Jigsaw</li>
+<li>Heavily used within WildFly, WildFly Swarm.</li>
+<li>Very easy packaging: just explicitly list your dependencies in a file.</li>
+<li>Does not affect compiletime (unlike Jigsaw).</li>
+<li>We do re-package Apache Lucene & several others..</li>
+</ul>
 </section>
 
 <!-- FIXME needs a recall of all concepts -->
@@ -364,14 +466,14 @@ cache.put("key", "data goes here");
 <h2>Thank you!</h2>
 <p>Some references:</p>
 <ul>
-	<li>Apache Lucene: <a href="https://lucene.apache.org/core/">lucene.apache.org/core</a></li>
 	<li>Hibernate team's blog <a href="http://in.relation.to/">in.relation.to</a></li>
 	<li>Hibernate Search: <a href="http://hibernate.org/search/">hibernate.org/search</a></li>
 	<li>WildFly: <a href="http://wildfly.org">wildfly.org</a></li>
-	<li>Infinispan: <a href="http://infinispan.org/">infinispan.org</a><!--, the <a href="https://github.com/gustavonalle/weather-demo">Weather Demo</a> by <a href="https://github.com/gustavonalle/">@gustavonalle</a></li>-->
+	<li>Infinispan: <a href="http://infinispan.org/">infinispan.org</a>
 	<li><a href="?print-pdf">Export these slides to PDF</a><small>(requires Chrome)</small></li>
 </ul>
 <p><a href="https://github.com/hibernate/hibernate-search">github.com/hibernate/hibernate-search</a></p>
+<p>Our mailing list search, powered by Elasticsearch: <a href="http://search.jboss.org/#!q=&project=hibernate&sortBy=new">http://search.jboss.org/</a></p>
 </section>
 
 <!-- End -->
